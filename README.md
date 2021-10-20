@@ -4,7 +4,7 @@
 
 RCHSP HIMSS 7 인증 프로그램 개발
 
-HIMSS #1
+HIMSS 1
 HIMSS #2
 HIMSS #3
 HIMSS #4
