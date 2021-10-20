@@ -1,0 +1,142 @@
+SELECT * FROM ALL_DB_LINKS
+SELECT * FROM ALL_TAB_COMMENTS
+SELECT * FROM ALL_COL_COMMENTS
+SELECT * FROM ALL_SOURCE
+SELECT * FROM FXQUERYSTORE
+
+
+SELECT * FROM EMBUMENT		     -- [EAM] 메인별메뉴정보 
+SELECT * FROM ALL_DB_LINKS		     -- 개발기->운영기 DB LINKS
+SELECT * FROM mdevdba.CAUGHT_ERRORS -- db 오류 로그 조회(DEV)
+SELECT * FROM mstgdba.CAUGHT_ERRORS  -- db 오류 로그 조회(ST)
+SELECT * FROM SUREDATA		     -- 카카오알림톡 DATA
+
+-- 공통
+SELECT * FROM CCCCCLTC	-- 공통그룹코드
+SELECT * FROM CCCCCSTE	-- 공통그룹코드상세
+SELECT * FROM CCCMCSTE	-- 멀티병원공통그룹코드상세
+SELECT * FROM HSFGMRMT	-- 메시지 마스터 테이블
+SELECT * FROM CNLRRUSD	-- 시스템사용자정보
+SELECT * FROM PDEDBMSM	-- 부서기본      
+SELECT * FROM CNLRRUSM  -- System User Representation Information[System User Representation Information]
+
+
+-- 진료                                      
+SELECT * FROM CCOOCBAC	-- 처방코드  
+SELECT * FROM CCOOCBRR	-- 처방코드관계        
+SELECT * FROM CCOOCCAC	-- 처방분류코드  
+SELECT * FROM CCOOCCSC	-- 처방전표분류코드   
+        
+-- 처방      
+SELECT * FROM MOOORPTV	-- 환자처방통합View 
+SELECT * FROM MOOORCDV 	-- 투약처방조회통합View 
+
+SELECT * FROM MOOORPTD	-- 환자처방통합정보
+SELECT * FROM MOOORDRM	-- 환자투약처방기본
+SELECT * FROM MOOORIJD	-- 환자주사처치일정정보
+SELECT * FROM MOOOREXM	-- 환자검사처방기본
+SELECT * FROM MOOORTRM	-- 환자처치지시처방기본
+SELECT * FROM MOOORALD	-- 환자처방주의정보
+SELECT * FROM MOOORTFM	-- 환자수혈처방기본
+SELECT * FROM MOOORFED	-- 환자처방료정보
+                 
+SELECT * FROM MOOORDED	-- 유보항균제제한항균제확인정보
+SELECT * FROM CNLMRUDD	-- 의사별진료과등록정보
+SELECT * FROM BCCCSCAC	-- CDSS공통그룹코드
+SELECT * FROM BCCCSCBE	-- CDSS공통그룹코드상세
+SELECT * FROM MOOORALC	-- 처방주의구분코드  
+SELECT * FROM MOOORARC	-- 처방주의사유코드
+SELECT * FROM MOODIPAM	-- 환자진단기본
+SELECT * FROM MOODIPCD	-- 환자수진일별진단정보
+SELECT * FROM MOOPTACC	-- 알러지항목코드
+SELECT * FROM MOOPTAPD	-- 환자알러지정보    
+SELECT * FROM MOOORAED	-- 개인별처방주의제외정보      
+SELECT * FROM MSDMDDMD	-- DUR약품관리정보   
+SELECT * FROM MSDMDDRR	-- DUR약품관계
+SELECT * FROM MOOPTDDD	-- 환자장치ALERT정보
+SELECT * FROM MOMNMWPD-- 환자현위치정보
+SELECT * FROM MOOPTPUD	-- 진료팝업항목확인정보
+SELECT * FROM MRDDRCSD	-- 진료기록코사인정보
+SELECT * FROM MOOORDFD	-- 치식정보   
+SELECT * FROM MOOORDFE	-- 치식정보상세              
+SELECT * FROM PDEDBRTD	-- 업무관계정보  
+SELECT * FROM MOOORMEM	-- 환자식이처방기본
+
+-- CP
+SELECT * FROM MOOCPSAM	-- CP세트처방기본
+SELECT * FROM MOOCPSDE	-- CP세트처방상세
+SELECT * FROM MOOCPSBD	-- CP세트처방일정정보
+SELECT * FROM MOOCPSCD	-- CP세트처방일정적용목적정보
+
+-- 타팀
+SELECT * FROM PCTPCPAM	-- 환자기본        
+SELECT * FROM ACPPRAAM	-- 입원접수기본 
+SELECT * FROM ACPPRARD	-- 입원예약정보
+SELECT * FROM ACPPRETM	-- 응급접수기본
+SELECT * FROM ACPPRODM	-- 외래예약접수기본
+SELECT * FROM ACPPRTSD	-- 전과전등정보   
+SELECT * FROM MSDMDBAM	-- 약품기본    
+SELECT * FROM MSERMMMC	-- 검사항목코드    
+SELECT * FROM MSELMEBM	-- 검체검사항목기본    
+SELECT * FROM MSDDGBAM	-- 약제투약처방기본
+
+SELECT * FROM XGAB.RPPSDSNV 	-- 전문의 정보 조회
+
+-- 원무
+SELECT * fROM AIMIRPMC;  --수가마스터 
+SELECT * fROM CCOOCBAC;  --처방마스터
+SELECT * FROM XBIL.PCTPCPAMV - 환자 기본정보 VIEW 
+
+CNLCRUGD - 사용자주전역설정정보
+
+-- 배포
+CHDDPDRD -- (배포요청테이블)
+CHDDPDMD -- (배포마스터 테이블)
+CHDDPDDD -- (배포상세 테이블)
+  
+-- DB LINK  
+@DL_MIG_ASIS
+@DL_STG_XMED
+@DL_PRO_XMED
+
+-- 공통코드 정보
+-- 563	 		처방그룹코드        
+-- 405			처방적용목적코드(1=일반 2=수술전 3=수술후 4=검사후 5=전과전등후 6=외출 7=수술중 9=퇴원)
+-- 795			용량입력방법코드(투여량입력 방법을 나타내는 코드)
+-- DR00033		진료수가보험구분코드   
+-- RE01			용어그룹유형코드
+-- RDOZ			진료서식유형상세코드
+
+* alert 
+MOOPTICC - Infection Clinical Pregnancy Breast Feeding Information Code [감염임신수유정보코드]
+MOOPTIPD - Patient Infection Pregnancy Breast Feeding Information [환자감염임신수유정보]
+
+MOOORRCD - 수혈처방안내정보
+
+
+select * from all_source
+where upper(TEXT) like '%MSERMMMC%'
+
+-- 간호
+
+MOMNMHOD - Nurse Hand-over Information detail
+MRNNRICD - 간호항목분류정보
+MRNNRIAM - 간호항목기본
+CCVNVVBM - 간호용어기본
+CCVNVVMR - 간호용어매핑관계
+CCVNVVID - 간호항목간호용어기본관계정보
+MRNNRVAD - 임상관찰기록일자별간호항목정보
+
+
+
+
+
+
+
+
+
+
+
+
+
+
