@@ -6,6 +6,9 @@ SELECT * FROM FXQUERYSTORE
 
 
 SELECT * FROM EMBUMENT		     -- [EAM] 메인별메뉴정보 
+
+
+
 SELECT * FROM ALL_DB_LINKS		     -- 개발기->운영기 DB LINKS
 SELECT * FROM mdevdba.CAUGHT_ERRORS -- db 오류 로그 조회(DEV)
 SELECT * FROM mstgdba.CAUGHT_ERRORS  -- db 오류 로그 조회(ST)
@@ -19,7 +22,8 @@ SELECT * FROM HSFGMRMT	-- 메시지 마스터 테이블
 SELECT * FROM CNLRRUSD	-- 시스템사용자정보
 SELECT * FROM PDEDBMSM	-- 부서기본      
 SELECT * FROM CNLRRUSM  -- System User Representation Information[System User Representation Information]
-
+SELECT * FROM AIMIPHID -- 병원기본정보
+SELECT * FROM AIMIPHDD -- 병원기본내부정보
 
 -- 진료                                      
 SELECT * FROM CCOOCBAC	-- 처방코드  
@@ -29,15 +33,16 @@ SELECT * FROM CCOOCCSC	-- 처방전표분류코드
         
 -- 처방      
 SELECT * FROM MOOORPTV	-- 환자처방통합View 
-SELECT * FROM MOOORCDV 	-- 투약처방조회통합View 
+SELECT * FROM MOOORCDV -- 투약처방조회통합View 
 
 SELECT * FROM MOOORPTD	-- 환자처방통합정보
-SELECT * FROM MOOORDRM	-- 환자투약처방기본
+SELECT * FROM MOOORDRM-- 환자투약처방기본 (진료)
+SELECT * FROM MSDDGBAM	-- 약제투약처방기본 (약제)
 SELECT * FROM MOOORIJD	-- 환자주사처치일정정보
-SELECT * FROM MOOOREXM	-- 환자검사처방기본
-SELECT * FROM MOOORTRM	-- 환자처치지시처방기본
+SELECT * FROM MOOOREXM-- 환자검사처방기본
 SELECT * FROM MOOORALD	-- 환자처방주의정보
 SELECT * FROM MOOORTFM	-- 환자수혈처방기본
+SELECT * FROM MOOORTRM-- 환자처치지시처방기본
 SELECT * FROM MOOORFED	-- 환자처방료정보
                  
 SELECT * FROM MOOORDED	-- 유보항균제제한항균제확인정보
@@ -46,12 +51,16 @@ SELECT * FROM BCCCSCAC	-- CDSS공통그룹코드
 SELECT * FROM BCCCSCBE	-- CDSS공통그룹코드상세
 SELECT * FROM MOOORALC	-- 처방주의구분코드  
 SELECT * FROM MOOORARC	-- 처방주의사유코드
+
+/*진단정보*/
 SELECT * FROM MOODIPAM	-- 환자진단기본
+SELECT * FROM MOODIPBD	-- 진료과별진단정보
 SELECT * FROM MOODIPCD	-- 환자수진일별진단정보
+
 SELECT * FROM MOOPTACC	-- 알러지항목코드
 SELECT * FROM MOOPTAPD	-- 환자알러지정보    
 SELECT * FROM MOOORAED	-- 개인별처방주의제외정보      
-SELECT * FROM MSDMDDMD	-- DUR약품관리정보   
+SELECT * FROM MSDMDDMD-- DUR약품관리정보   
 SELECT * FROM MSDMDDRR	-- DUR약품관계
 SELECT * FROM MOOPTDDD	-- 환자장치ALERT정보
 SELECT * FROM MOMNMWPD-- 환자현위치정보
@@ -60,7 +69,7 @@ SELECT * FROM MRDDRCSD	-- 진료기록코사인정보
 SELECT * FROM MOOORDFD	-- 치식정보   
 SELECT * FROM MOOORDFE	-- 치식정보상세              
 SELECT * FROM PDEDBRTD	-- 업무관계정보  
-SELECT * FROM MOOORMEM	-- 환자식이처방기본
+SELECT * FROM MOOORMEM -- 환자식이처방기본
 
 -- CP
 SELECT * FROM MOOCPSAM	-- CP세트처방기본
@@ -74,9 +83,10 @@ SELECT * FROM ACPPRAAM	-- 입원접수기본
 SELECT * FROM ACPPRARD	-- 입원예약정보
 SELECT * FROM ACPPRETM	-- 응급접수기본
 SELECT * FROM ACPPRODM	-- 외래예약접수기본
+ACPPRORE -- 외래예약유형상세
 SELECT * FROM ACPPRTSD	-- 전과전등정보   
-SELECT * FROM MSDMDBAM	-- 약품기본    
-SELECT * FROM MSERMMMC	-- 검사항목코드    
+SELECT * FROM MSDMDBAM -- 약품기본    
+SELECT * FROM MSERMMMC -- 검사항목코드    
 SELECT * FROM MSELMEBM	-- 검체검사항목기본    
 SELECT * FROM MSDDGBAM	-- 약제투약처방기본
 
@@ -84,8 +94,10 @@ SELECT * FROM XGAB.RPPSDSNV 	-- 전문의 정보 조회
 
 -- 원무
 SELECT * fROM AIMIRPMC;  --수가마스터 
+SELECT * fROM AIMIRPMH;  --수가마스터 History
 SELECT * fROM CCOOCBAC;  --처방마스터
 SELECT * FROM XBIL.PCTPCPAMV - 환자 기본정보 VIEW 
+SELECT * FROM XCOM.CNLRRUSDV WHERE ROWNUM <= 10;
 
 CNLCRUGD - 사용자주전역설정정보
 
@@ -117,8 +129,7 @@ MOOORRCD - 수혈처방안내정보
 select * from all_source
 where upper(TEXT) like '%MSERMMMC%'
 
--- 간호
-
+-- 간호 기록
 MOMNMHOD - Nurse Hand-over Information detail
 MRNNRICD - 간호항목분류정보
 MRNNRIAM - 간호항목기본
@@ -126,11 +137,272 @@ CCVNVVBM - 간호용어기본
 CCVNVVMR - 간호용어매핑관계
 CCVNVVID - 간호항목간호용어기본관계정보
 MRNNRVAD - 임상관찰기록일자별간호항목정보
+MRNNRVAE - 임상관찰기록상세[Clinical Observation Record Detail]
+MRNNRVRD - 간호항목유효성규칙정보[Nursing Item Availability Rule Information]
+MRNNRIBD - 간호파트별임상관찰기록항목정보[Nursing Part Classfied by Clinical Observation Record Item Information]
+MRNNRVBD - 임상관찰기록연동간격정보
+MRNNRIID - 간호항목인터페이스정보
+
+MRNNRNAD - 간호일지정보
+MRNNRNAE - 간호일지속성상세 (txt)
+
+MRNNRNDD - 간호과정평가정보 (사용안함)
+-- INBOX
+
+MOOPTISD - INBOX 세팅
+MOOPTITD - INBOX 타입
+MOOPTIBD - INBOX 데이터
+
+
+-- 헌혈 프로세스
+
+MSBIODRD -헌혈자대장결과정보[Blood Donor Information]
+MSBIODCD - 없음[Blood Donation Campaign Information]
+MSELMCED - 검사접수정보
+MSBIOBMD - 혈액팩입출고정보[Blood Pack In and out of Warehouse Information]
+MSELMNGD - 부적합검체정보[Unconformity Specimen Information]
+MSELMNDD --Un-Tested Unit Release/Reason information [헌혈자 미검증 혈액 분출 사유 정보]
+
+
+-- Blood group 
+MSBIOBAD
+
+-- 의사기록
+
+MRDDRECM - 진료기록기본
+MRDDRCSD - 진료기록코사인정보
+MRFMFORM - 진료서식기본
+MRFMFSCD - 진료서식섹션정보
+MRFMFSTD - 진료서식유형별섹션정보
+MRFMFSDE - 진료서식유형별섹션상세
+MRDDRECE - 진료기록상세
+MRFMFCID - 진료서식구성정보
+MRDDRLFE - 진료기록대용량데이터상세
+
+[저장하는 종류가 다른 기록종류]
+MRDDRANE - 초진기록상세
+MRDDRPLE - 진료기록문제리스트상세
+MRDDRDNE - 퇴원기록상세
+MRDDRDPE - 퇴원계획기록상세
+MRDDRONE - 수술기록상세
+
+
+-- RCHSP 신규 테이블
+MSELMNDD -헌혈자 미검증 혈액 분출 사유 정보
+MOORDLOG -진료 환자조회 기록 선택 로그
+
+ 
+
+-- POCT 인터페이스 테스트
+MSELMCED - 검사접수정보
+MSELMEIM - 검사 인터페이스 코드마스터
+MSELMEBM - 검체검사항목기본
+MRNNRIID - 간호항목인터페이스정보
+
+-- HL7 인터페이스 관련
+MSSEADTD - ADT
+MSSEDFTD - DFT
+MSSEMDMD - MDM
+MSSEMFND - MFN
+MSSEORMD - ORM
+MSSEORUD - ORU
+MSSEPPRD - PPR
+MSSERDED - RDE
+MSSESIUD - SIU
+MSSESSUD - SSU
+MSSEVXUD - VXU
+MSSEQBPD - QBP
+
+
+MSSMIOCM - 인터페이스 테이블
+
+-- SENDINGLOG
+SELECT * FROM MSSSLOGD WHERE PATIENT_ID = '1814' AND SOURCE_MESSAGE like '%' || '146049' || '%' ORDER BY 1;
+-- RECEIVINGLOG
+SELECT * FROM MSSRLOGD WHERE PATIENT_ID = '1814' AND SOURCE_MESSAGE like '%' || '146049' || '%' ORDER BY 1;
 
 
 
+-- 백신정보
+MOOPTVAC -- 백신종류코드
+MOOPTVBC -- 백신접종시기코드
+MOOPTVCD -- 백신접종시기정보
+MOOPTVDD -- 백신접종연동정보 
+MOOPTVPD -- 환자백신접종정보
+MOOPTVAD - Patient Vaccination Administration Information
+MOOPTVSD - Patient Vaccination Administration Site Information
+
+-- 간호액팅
+MOOORNOD - Nursing Performing infomation - 수행
+MOOORNLD - Nursing Performing Medication Lot Cardinal Number Infor [LOT]
+
+-- 진단정보
+CCVMVDCM - 진료용어기본
+CCVMVICC - 국제표준질병분류코드
+
+-- 원무공통코드
+ACPPRICM - 원무공통코드
+
+-- 간호초기평가
+MRNNRFAD - 간호기록정보
+MRNNRFAE - 간호기록상세
+MRNNRCBC - 간호기록서식코드
+MRNNRCDD - 간호기록섹션간호항목관계정보
+MRNNRCCD - 간호기록섹션정보
+MRNNRCED - 간호기록섹션분류정보
+
+MOOORONV
+
+-- NPHIES
+
+ACPPRCMM - 계약기관코드상위기본
+
+SELECT *
+FROM CCCCCSTE	 -- 원무공통코드
+WHERE ROWNUM < 100
+AND COMN_GRP_CD LIKE '%NPHIE112%'
 
 
+
+[NPHIES]
+HHL7.FHIR_EVENT
+HHL7.FHIR_IN
+HHL7.FHIR_IN_CLAIM_RESP
+HHL7.FHIR_IN_CLAIM_RESP_ITEM
+HHL7.FHIR_IN_CLAIM_RESP_ITEM_ADJ
+HHL7.FHIR_IN_COMMUNICATION_REQ
+HHL7.FHIR_IN_COVERAGE_COPAY
+HHL7.FHIR_IN_ELIGI_RESP
+HHL7.FHIR_IN_ELIGI_RESP_INSU_BENE
+HHL7.FHIR_IN_ERROR
+HHL7.FHIR_IN_INSURANCE_COVERAGE
+HHL7.FHIR_IN_INSURANCE_COVERAGE_CLA
+HHL7.FHIR_IN_INSURANCE_ITEM
+HHL7.FHIR_IN_INSURANCE_ITEM_BENEFIT
+HHL7.FHIR_IN_INSURER
+HHL7.FHIR_IN_ORGANIZATION
+HHL7.FHIR_IN_PATIENT
+HHL7.FHIR_IN_RECONCIL
+HHL7.FHIR_IN_RECONCIL_DETAIL
+HHL7.FHIR_IN_TASK_RESP
+HHL7.FHIR_PAYLOAD
+
+
+
+MSSSLOGD
+
+HHL7.FHIR_IN_PATIENT
+
+PCTPCPQD - 환자자격정보
+PCTPCPEM - 전사환자번호관리기본
+AIMIPHID - 병원기본정보
+ACDPCBAD - 의사휴진일정정보
+
+
+Aurora 수술장 오픈
+
+MOOOPPAM -- 수술예정기본
+
+MOMDCDPD - Nursing Duty Classfied by Medical Treatment Department Attending Physician
+MRNNRSSD - 수술안전점검리스트정보
+MRNNRSSE - 수술안전점검리스트항목상세
+MRNNRSCD - 수술안전점검리스트확인정보
+
+MOMNMORD - 수술실간호관리정보
+
+MOOOPRMD - 수술실관리정보 (마스터)
+MOOOPABD -- 수술실배정관리
+
+MRNNROAD -- 수술간호기록정보
+MRNNROCE -- Operate Nursing Record Instrument Set Detail[Operate Nursing Record Instrument Set Detail]
+MRNNROEE - 수술간호기록검체상세[Operate Nursing Record Specimen Detail]
+MRNNROAE -- 수술간호기록물품상세[Operate Nursing Record Article Detail]
+MRNNROPE -- 수술간호기록수술부위상세[Operate Nursing Record Operate Region Detail]
+MRNNROTE -- 수술간호기록시간상세[Operate Nursing Record Time Detail]
+MRNNROVE -- 수술간호기록임상관찰상세[Operate Nursing Record Clinical Observation Detail]
+MRNNROIE -- 수술간호기록임플란트상세[Operate Nursing Record Implant Detail]
+MRNNROHE -- 수술간호기록지혈상세[Operate Nursing Record Hemostasis Detail]
+MRNNROWE -- 수술간호기록직원상세[Operate Nursing Record Staff Detail]
+MRNNROUE -- 수술간호기록튜브상세[Operate Nursing Record Tube Detail]
+MRNNROSE -- 수술간호기록피부상태상세[Operate Nursing Record Skin Status Detail]
+MRNNROOE -- (사용안함) 수술간호기록미사용항목단순조회용상세[Operate Nursing Record Unused Item Simple Listing For (The Use Of) Detail]
+
+
+MRNNRBAD - 수혈기록정보
+MRNNRBBD - 수혈기록혈액세트정보
+
+MOOORTFM - 환자수혈처방기본
+
+MOOOPPCD - 수술예정변경신청정보
+MRDDROAD - Operate Attribute Information [수술속성정보]
+
+MSMCSPGD - 스캔서식코드정보
+
+
+MRNNRRAD – 회복간호기록정보[Recovery Nursing Record Information]
+MRNNRRAE - 회복간호기록상세[Recovery Nursing Record Detail]
+
+[Intake]
+MRBBRDSD -- 
+
+select *
+from MRBBRIDM -- intake 마스터
+where rownum < 100
+and INTK_ITEM_ID between '400' and '500';
+
+select *
+from MRBBRIRD
+where rownum < 100;
+
+select *
+from MRBBRIRE
+where rownum < 300
+and INTK_ITEM_ID between '400' and '500';
+
+select *
+from PCTPCCIM
+where rownum < 100;
+
+
+ACDPCMCD /* [진료서비스정보] */
+
+ACORDERV
+
+PCTPCMRD - 환자계약기관확인등록정보
+AIMIPBAM - 청구기본 테이블
+
+ACPPRIRE - 입원예약유형상세
+
+ACPPAVCE - Patient Approval Detail
+
+
+ACPPEOCE - 외래계산내역 
+AIMIPODD - Demand Order Prescribing Information
+AIMIPBAM - 청구기본
+
+
+ACPPAVCE - Patient Approval Detail
+ACPPEICE
+
+AIMIPODD - Demand Order Prescribing Information
+AIMIPBAM - 청구기본
+
+
+SELECT * FROM EMBUMENT		     -- [EAM] 메인별메뉴정보 
+EMUSRBUT -- 부서별 업무권한 정의
+EMBUROLT -- 롤 정의
+EMDEPBUT -- 부서별 업무권한 정의
+EMGRPBUT - 그룹별 업무권한 정의
+EMGRMENT - 그룹관리 정보
+EMGRUSRT - 그룹사용자 정보
+EMBUPERT - 업무별 롤별 메뉴 및 권한설정
+
+
+Tooth Chart [DenTal]
+MRDDRTCM -- patient teeth chart information
+
+
+BCCRMCSD -- CDSS 테이블
 
 
 
