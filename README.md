@@ -1,6 +1,5 @@
 # 2021.08.01 ~ 2021.12.10 RCHSP SI 3차
-
-RCHSP HIMSS 7 인증 프로그램 개발
+- RCHSP HIMSS 7 인증 프로그램 개발
 =============
 
 HIMSS 1
